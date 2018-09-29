@@ -19,14 +19,39 @@ const simpsons = [
 
 class Board extends Component {
 	state = {
-		data : simpsons
+		data : simpsons,
+		score: 0,
+		topScore: 0,
+		keptPick: []
 	}
+	clicked = props => {
+		let clickedId = props.target.id;
+		let checkKept = this.state.keptPick;
+		this.checker(clickedId,checkKept);
+		// state.keptPick.includes(value => {
+		// 	console.log(value);
+		// })
+		console.log(props.target.id);
+		this.setState({score: this.state.score + 1});
+		console.log(this.state.score);
+		let a = this.state.keptPick.concat(props.target.id);
+		this.setState({keptPick: a});
+		console.log(this.state.keptPick);
+	}
+
+	checker = (value,other) => {
+		let a = other.includes(value);
+		console.log(a);
+		console.log(value,other);
+		return a;
+	}
+
 	render() {
 		return (
 		<div className="Board">
 			<div className="imgContainer">
 				{this.state.data.map(imgs => {
-					return <img id={imgs.id} src={imgs.href}></img>
+					return <img id={imgs.id} src={imgs.href} onClick={this.clicked}></img>
 				})}
 			</div>
 		</div>
