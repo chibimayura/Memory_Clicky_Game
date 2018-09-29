@@ -31,12 +31,26 @@ class Board extends Component {
 		// state.keptPick.includes(value => {
 		// 	console.log(value);
 		// })
-		console.log(props.target.id);
-		this.setState({score: this.state.score + 1});
-		console.log(this.state.score);
-		let a = this.state.keptPick.concat(props.target.id);
-		this.setState({keptPick: a});
-		console.log(this.state.keptPick);
+		if(!this.checker(clickedId,checkKept)) {
+			// Continue with game
+			// score increments, --
+			// randomize
+			// 
+			let a = this.state.keptPick.concat(props.target.id);
+			this.setState({keptPick: a});
+			this.randomizer(this.state.data);
+			this.setState({score: this.state.score + 1});
+		} else {
+			// you lose
+			console.log('lose area');
+			this.setState({score: 0});
+			this.randomizer(this.state.data);
+			this.setState({keptPick: []});
+		}
+		// console.log(props.target.id);
+		// this.setState({score: this.state.score + 1});
+		// console.log(this.state.score);
+		// console.log(this.state.keptPick);
 	}
 
 	checker = (value,other) => {
@@ -46,9 +60,20 @@ class Board extends Component {
 		return a;
 	}
 
+	randomizer = a => {
+		for (let i = a.length - 1 ; i > 0; i--){
+			const j = Math.floor(Math.random()*(i + 1));
+			[a[i],a[j]] = [a[j], a[i]];
+		}
+		return a;
+		// let randomize = Math.floor(Math.random()*simpsons);
+		// return randomize;
+	}
+
 	render() {
 		return (
 		<div className="Board">
+			Clicky-Game Score: {this.state.score}
 			<div className="imgContainer">
 				{this.state.data.map(imgs => {
 					return <img id={imgs.id} src={imgs.href} onClick={this.clicked}></img>
