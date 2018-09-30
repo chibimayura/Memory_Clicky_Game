@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Board.css';
 
-import Nav from '../Nav';
-
 const simspons = [
 	"https://consequenceofsound.files.wordpress.com/2017/04/homer-simpson-feature1.png?w=807",
 	"https://i.ytimg.com/vi/yR3ecmWmrxs/maxresdefault.jpg",
