@@ -9,7 +9,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Nav width="100%"/>
         <Board />
       </div>
     );

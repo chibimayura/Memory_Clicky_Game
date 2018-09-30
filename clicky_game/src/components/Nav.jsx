@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class Nav extends Component {
     render(){
         return(
-            <div className="nav" style={{width: this.props.width}}>
-             <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="nav">
+             <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{width: this.props.width}}>
                 <a className="navbar-brand" href="#">
                     Clicky-Game
                 </a>
